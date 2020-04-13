@@ -60,6 +60,9 @@ function App() {
   const [lastName, setLastName] = useState('');
 //   console.log(name);
 //   console.log(setName);
+
+// defining conditional hook
+const [enableFirstName, setEnableFirstName] = useState(false);
   
   function handleChange(event) {
       event.preventDefault();
@@ -70,14 +73,22 @@ function App() {
     event.preventDefault();
     setLastName(event.target.value);
   }
+
+  // handle function for check box
+  function handleCheckBox(event) {
+      event.preventDefault();
+      setEnableFirstName(!enableFirstName);
+  }
   return (
       <div>
       <form>
-          <input type="text" value={name} onChange={handleChange} placeholder="Enter your name here" />
-          <input type="text" value={lastName} onChange={handleName} placeholder="Enter your last name" />
+          <input type="text" value={name} onChange={handleChange} placeholder="Enter your name here"/>
+          <input type="text" value={lastName} onChange={handleName} placeholder="Enter your last name" /><br />
+          <input type="checkbox" value={enableFirstName} onChange={handleCheckBox} />
       </form>
-  <p>My name is : {name}</p>
-  <p>My last name is : {lastName}</p>
+  {/* <p>My name is : {name}</p>
+  <p>My last name is : {lastName}</p> */}
+  <p>My Name is {enableFirstName ? name : ''} and last name is {lastName}</p>
       </div>
   )
 }

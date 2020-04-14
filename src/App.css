@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Roboto', sans-serif;
+  width: 90vw;
+  margin: 0 auto;
+  background: linear-gradient(rgba(255,255,255, 0.7), rgba(255,255,255, 0.7)),#d5dcf9;
+  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.register,
+.login {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+/* .login h3 {
+ color: #f5f3f5;
+ margin-top: 10px;
+} */
+form {
+min-height: 300px;
+min-width: 45%;
+background: #441151;
+margin: 0 auto;
+text-align: center;
+padding: 40px 15px;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form input{
+flex: 0 0 auto;
+min-width: 90%;
+margin: 0 auto;
+/* display: block; */
+padding: 10px;
+margin: 10px;
+outline: none;
+border: none;
+background: transparent;
+border-bottom: 3px solid #f5f3f5;
+margin-bottom: 30px;
+}
+
+form input::placeholder{
+  text-transform: capitalize;
+  font-size: 16px;
+  color: #f5f3f5;
+}
+
+form input:hover::placeholder {
+  font-size: 12px;
+  padding-top: 10px;
+}
+
+.btn,
+form button {
+  padding: 15px 30px;
+  border: 2px solid #f5f3f5;
+  background: transparent;
+  color: #f5f3f5;
+  font-size: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  max-width: 70%;
+  margin: 0 auto;
+  transition: background 2s ease, color 2s ease, border 2s ease;
+}
+
+.login h3 {
+  display: block;
+  align-self: center;
+  color: #f5f3f5;
+  margin-top: 10px;
+}
+form button:hover {
+  background: #f5f3f5;
+  border: none;
+  color: #441151;
 }

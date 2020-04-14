@@ -36,7 +36,8 @@ flex-direction: column;
 justify-content: space-evenly;
 }
 
-form input{
+form input,
+form textarea{
 flex: 0 0 auto;
 min-width: 90%;
 margin: 0 auto;
@@ -50,13 +51,15 @@ border-bottom: 3px solid #f5f3f5;
 margin-bottom: 30px;
 }
 
-form input::placeholder{
+form input::placeholder,
+form textarea::placeholder{
   text-transform: capitalize;
   font-size: 16px;
   color: #f5f3f5;
 }
 
-form input:hover::placeholder {
+form input:hover::placeholder,
+form textarea:hover::placeholder {
   font-size: 12px;
   padding-top: 10px;
 }
@@ -85,4 +88,67 @@ form button:hover {
   background: #f5f3f5;
   border: none;
   color: #441151;
+}
+
+/***********posts*****************/
+.posts {
+width: 70%;
+margin: 0 auto;
+/* margin-top: 10px; */
+text-align: center;
+border-bottom: 2px solid green;
+padding: 40px;
+background: #919191;
+}
+
+.post-title {
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+  letter-spacing: 0.3em;
+  line-height: 1.3em;
+  font-style: italic;
+  margin-bottom: 5px;
+}
+
+.title-underline {
+  width: 250px;
+  border: 2px solid #f5f3f5;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.post-content {
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+}
+
+.author {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.author-name {
+  font-style: italic;
+  color: #f5f3f5;
+  font-size: 26px;
+  margin-left: 5px;
+}
+
+.new-post {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.author-create {
+  color: #f5f3f5;
+  font-size: 24px;
+}
+
+.post-list {
+  padding: 30px 0;
 }

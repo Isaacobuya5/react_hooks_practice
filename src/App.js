@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import UserBar from "./user/UserBar";
 import Post from "./posts/Post";
@@ -6,8 +6,7 @@ import CreatePost from "./posts/CreatePost";
 import PostList from "./posts/PostList";
 import './App.css';
 
-const user = "Isaac Obuya";
-const posts = [
+const defaultPosts = [
     {
         title: "Testing React Components",
         content: "Jest is the reccommended test runner for testing React, However there exists others such as Mocha",
@@ -25,14 +24,17 @@ const posts = [
     }
 ];
 export default function App() {
+    const [user, setUser] = useState('');
+
+    const [posts, setPosts] = useState(defaultPosts);
 // return <Logout user="Isaac Obuya"/>
 return (
 <div>
     <header>
-        <UserBar user={user}/>
+        <UserBar user={user} setUser={setUser}/>
     </header>
     <section id="rest">
-    <CreatePost />
+    {user &&  <CreatePost user={user} posts={posts} setPosts={setPosts}/>}
     <PostList posts={posts} />
     </section>
 </div>

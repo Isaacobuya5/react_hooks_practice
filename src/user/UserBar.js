@@ -4,8 +4,7 @@ import React, {useState} from "react";
 import Login from "./Login";
 import Logout from "./Logout";
 
-export default function UserBar() {
-    const [user, setUser] = useState('');
+export default function UserBar({user, setUser}) {
     let content;
     if (user) {
         content = (

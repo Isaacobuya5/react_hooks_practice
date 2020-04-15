@@ -1,10 +1,13 @@
 import React from "react";
 
-export default function Logout({ user }) {
+export default function Logout({ user, setUser }) {
     return (
-        <div>
-        Logged in as user: {user}
-        <button type="submit" onClick={ e => e.preventDefault()} className="btn">Logout</button>
+        <div className="logout">
+        <span className="loggedin-text">Welcome user: {user}</span>
+        <button type="submit" onClick={ e => {
+            e.preventDefault();
+            setUser('');
+            }} className="logout-btn">Logout</button>
         </div>
     );
 }

@@ -1,19 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 
 // import Register from "./user/Register";
 import Login from "./Login";
 import Logout from "./Logout";
 
 export default function UserBar() {
-    const user = "";
+    const [user, setUser] = useState('');
     let content;
     if (user) {
         content = (
-            <Logout user={user} />
+            <Logout user={user} setUser={setUser}/>
         )
     } else {
         content = (
-            <Login />
+            <Login setUser={setUser}/>
         )
     }
     return (

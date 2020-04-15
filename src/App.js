@@ -6,6 +6,7 @@ import CreatePost from "./posts/CreatePost";
 import PostList from "./posts/PostList";
 import './App.css';
 
+const user = "Isaac Obuya";
 const posts = [
     {
         title: "Testing React Components",
@@ -26,6 +27,14 @@ const posts = [
 export default function App() {
 // return <Logout user="Isaac Obuya"/>
 return (
-<PostList posts={posts}/>
+<div>
+    <header>
+        <UserBar user={user}/>
+    </header>
+    <section id="rest">
+    <CreatePost />
+    <PostList posts={posts} />
+    </section>
+</div>
 )
 }

@@ -4,15 +4,15 @@ import React, {useState} from "react";
 import Login from "./Login";
 import Logout from "./Logout";
 
-export default function UserBar({user, setUser}) {
+export default function UserBar({user, dispatch}) {
     let content;
     if (user) {
         content = (
-            <Logout user={user} setUser={setUser}/>
+            <Logout user={user} dispatch={dispatch}/>
         )
     } else {
         content = (
-            <Login setUser={setUser}/>
+            <Login dispatch={dispatch}/>
         )
     }
     return (

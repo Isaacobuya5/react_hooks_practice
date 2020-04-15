@@ -1,6 +1,8 @@
 import React,{useState} from "react";
 
-export default function Login({setUser}) {
+import {loginUserAction} from "../actions/user.actions";
+
+export default function Login({dispatch}) {
     const [username, setUsername] = useState('');
 
     function handleChange(event) {
@@ -11,7 +13,8 @@ export default function Login({setUser}) {
         <article className="login">
         <form onSubmit={e => {
             e.preventDefault();
-            setUser(username);
+            dispatch(loginUserAction(username));
+            // setUser(username);
         }}>
          {/* <label htmlFor="login-username">username:</label> */}
          <input type="text" name="username" id="username" placeholder="username" value={username} onChange={handleChange}/>

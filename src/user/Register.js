@@ -1,9 +1,14 @@
 import React from "react";
 
+import { registerUserAction } from "../actions/user.actions";
+
 export default function Register() {
     return (
         <article className="register">
-        <form onSubmit={e => e.preventDefault()}>
+        <form onSubmit={e => {
+            e.preventDefault();
+            // registerUserAction(username, password,confirmPassword);
+            }}>
          {/* <label htmlFor="login-username">username:</label> */}
          <input type="text" name="username" id="username" placeholder="username" />
          {/* <label htmlFor="login-password">password:</label> */}

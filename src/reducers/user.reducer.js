@@ -8,6 +8,6 @@ switch (action.type) {
     case actionTypes.LOGOUT:
         return '';
     default:
-        throw new Error();
+        return state;
 }
 }

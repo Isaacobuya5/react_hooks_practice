@@ -1,6 +1,8 @@
 import React,{ useState } from "react";
 
-export default function CreatePost({user, posts, dispatchPosts}) {
+import {createNewPost} from "../actions/posts.actions";
+
+export default function CreatePost({user, posts, dispatch}) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
@@ -23,7 +25,7 @@ export default function CreatePost({user, posts, dispatchPosts}) {
         // }
         // // adding new post to existing posts
         // setPosts([ newPost, ...posts]);
-        dispatchPosts(title, content,user);
+        dispatch(createNewPost(title, content, user));
     }
 
     function clearFields() {

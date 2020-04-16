@@ -5,8 +5,11 @@ import Post from "./posts/Post";
 import CreatePost from "./posts/CreatePost";
 import PostList from "./posts/PostList";
 
-import {userReducer} from "./reducers/user.reducer";
-import { postsReducer } from "./reducers/posts.reducer";
+// import {userReducer} from "./reducers/user.reducer";
+// import { postsReducer } from "./reducers/posts.reducer";
+
+// import the rootReducer containing combined reducers
+import { rootReducer } from "./reducers/rootReducer";
 
 import './App.css';
 
@@ -29,19 +32,30 @@ const defaultPosts = [
 ];
 export default function App() {
     // const [user, setUser] = useState('');
-    const [user, dispatchUser] = useReducer(userReducer, '');
+    // const [user, dispatchUser] = useReducer(userReducer, '');
 
     // const [posts, setPosts] = useState(defaultPosts);
     // replaced with postReducer
-    const [posts, dispatchPosts] = useReducer(postsReducer, defaultPosts);
+    // const [posts, dispatchPosts] = useReducer(postsReducer, defaultPosts);
 // return <Logout user="Isaac Obuya"/>
+
+   // each hook definition to be replaced with a single defined hook definition for both user and posts
+   const [state, dispatch] = useReducer(rootReducer, {
+    user: '',
+    posts: defaultPosts
+});
+
+// extract values 
+const {user, posts} = state;
+// then we pass dispatch as prop to each of the component rather than dispatchUser, or dispatchPosts
+
 return (
 <div>
     <header>
-        <UserBar user={user} dispatch={dispatchUser}/>
+        <UserBar user={user} dispatch={dispatch}/>
     </header>
     <section id="rest">
-    {user &&  <CreatePost user={user} posts={posts} dispatchPosts={dispatchPosts}/>}
+    {user &&  <CreatePost user={user} posts={posts} dispatch={dispatch}/>}
     <PostList posts={posts} />
     </section>
 </div>

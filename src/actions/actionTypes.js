@@ -1,5 +1,6 @@
 export const actionTypes = {
     LOGIN: "LOGIN",
     REGISTER: "REGISTER",
-    LOGOUT: "LOGOUT"
+    LOGOUT: "LOGOUT",
+    CREATE_POST: "CREATE_POST"
 };

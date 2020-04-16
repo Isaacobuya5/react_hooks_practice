@@ -6,6 +6,7 @@ import CreatePost from "./posts/CreatePost";
 import PostList from "./posts/PostList";
 
 import {userReducer} from "./reducers/user.reducer";
+import { postsReducer } from "./reducers/posts.reducer";
 
 import './App.css';
 
@@ -30,7 +31,9 @@ export default function App() {
     // const [user, setUser] = useState('');
     const [user, dispatchUser] = useReducer(userReducer, '');
 
-    const [posts, setPosts] = useState(defaultPosts);
+    // const [posts, setPosts] = useState(defaultPosts);
+    // replaced with postReducer
+    const [posts, dispatchPosts] = useReducer(postsReducer, defaultPosts);
 // return <Logout user="Isaac Obuya"/>
 return (
 <div>
@@ -38,7 +41,7 @@ return (
         <UserBar user={user} dispatch={dispatchUser}/>
     </header>
     <section id="rest">
-    {user &&  <CreatePost user={user} posts={posts} setPosts={setPosts}/>}
+    {user &&  <CreatePost user={user} posts={posts} dispatchPosts={dispatchPosts}/>}
     <PostList posts={posts} />
     </section>
 </div>

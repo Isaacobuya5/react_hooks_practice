@@ -1,4 +1,4 @@
-import React, {useState, useReducer} from "react";
+import React, {useReducer, useEffect} from "react";
 
 import UserBar from "./user/UserBar";
 import Post from "./posts/Post";
@@ -31,6 +31,7 @@ const defaultPosts = [
     }
 ];
 export default function App() {
+
     // const [user, setUser] = useState('');
     // const [user, dispatchUser] = useReducer(userReducer, '');
 
@@ -48,6 +49,14 @@ export default function App() {
 // extract values 
 const {user, posts} = state;
 // then we pass dispatch as prop to each of the component rather than dispatchUser, or dispatchPosts
+
+useEffect(() => {
+    if (user) {
+        document.title = `${user} - React Blog`
+    } else {
+        document.title = "React Blog"
+    }
+},[user]);
 
 return (
 <div>

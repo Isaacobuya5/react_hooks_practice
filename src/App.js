@@ -1,5 +1,7 @@
-import React, {useReducer, useEffect} from "react";
+import React, {useReducer, useEffect, useState} from "react";
 
+import Header from "./Header";
+import ChangeTheme from './posts/ChangeTheme';
 import UserBar from "./user/UserBar";
 import Post from "./posts/Post";
 import CreatePost from "./posts/CreatePost";
@@ -10,6 +12,7 @@ import PostList from "./posts/PostList";
 
 // import the rootReducer containing combined reducers
 import { rootReducer } from "./reducers/rootReducer";
+import {ThemeContext} from "./contexts";
 
 import './App.css';
 
@@ -31,6 +34,11 @@ const defaultPosts = [
     }
 ];
 export default function App() {
+
+    const [theme, setTheme] = useState({
+        primaryColor: 'green',
+        secondaryColor: 'blue'
+    });
 
     // const [user, setUser] = useState('');
     // const [user, dispatchUser] = useReducer(userReducer, '');
@@ -59,8 +67,12 @@ useEffect(() => {
 },[user]);
 
 return (
+//using Context Provider to change the value of the Contexts
+<ThemeContext.Provider value={theme}>
 <div>
     <header>
+        {user ? <Header text="React Hooks Blog" /> : ""}
+        <ChangeTheme theme={theme} setTheme={setTheme} />
         <UserBar user={user} dispatch={dispatch}/>
     </header>
     <section id="rest">
@@ -68,5 +80,7 @@ return (
     <PostList posts={posts} />
     </section>
 </div>
+</ThemeContext.Provider>
 )
+
 }

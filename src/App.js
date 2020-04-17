@@ -12,7 +12,7 @@ import PostList from "./posts/PostList";
 
 // import the rootReducer containing combined reducers
 import { rootReducer } from "./reducers/rootReducer";
-import {ThemeContext} from "./contexts";
+import {StateContext,ThemeContext} from "./contexts";
 
 import './App.css';
 
@@ -68,19 +68,24 @@ useEffect(() => {
 
 return (
 //using Context Provider to change the value of the Contexts
+<StateContext.Provider value={{state, dispatch}}>
 <ThemeContext.Provider value={theme}>
 <div>
     <header>
         {user ? <Header text="React Hooks Blog" /> : ""}
         <ChangeTheme theme={theme} setTheme={setTheme} />
-        <UserBar user={user} dispatch={dispatch}/>
+        {/* <UserBar user={user} dispatch={dispatch}/> */}
+        <UserBar />
     </header>
     <section id="rest">
-    {user &&  <CreatePost user={user} posts={posts} dispatch={dispatch}/>}
-    <PostList posts={posts} />
+    {/* {user &&  <CreatePost user={user} posts={posts} dispatch={dispatch}/>} */}
+    {user &&  <CreatePost />}
+    {/* <PostList posts={posts} /> */}
+    <PostList />
     </section>
 </div>
 </ThemeContext.Provider>
+</StateContext.Provider>
 )
 
 }

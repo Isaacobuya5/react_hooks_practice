@@ -1,8 +1,12 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
 
 import {loginUserAction} from "../actions/user.actions";
+import { StateContext } from "../contexts";
 
-export default function Login({dispatch}) {
+export default function Login() {
+
+    const { dispatch } = useContext(StateContext);
+    
     const [username, setUsername] = useState('');
 
     function handleChange(event) {

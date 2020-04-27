@@ -1,15 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const THEMES = [
-    {
-        primaryColor: 'deepskyblue', secondaryColor: 'coral'
-    },
-    {
-        primaryColor: 'orchid', secondaryColor: 'mediumseagreen'
-    }
-];
 
 function ThemeItem({ theme, active, onClick}) {
+
     return (
         <span onClick={onClick} style={{ cursor: 'pointer', 
     paddingLeft: 8, fontWeight: active ? 'bold' : 'normal'}}>
@@ -20,6 +13,20 @@ function ThemeItem({ theme, active, onClick}) {
 }
 
 export default function ChangeTheme({ theme, setTheme}) {
+
+        // state to allow us store the theme
+        const [themes, setThemes] = useState([]);
+
+        // fetching the list of themes
+        // we then need to set the themes state with the themes we have fetched
+        // this effect hook is only triggered when the component mounts, thus we pass an empty array
+        // ensures that the hook does not have dependencies thus will be triggred only when the component mounts.
+        useEffect(() => {
+            fetch('/api/themes')
+            .then(result => result.json())
+            .then(themes => setThemes(themes));
+        },[]);
+        
     // function to check if a theme object is active
     function isActive(t) {
         return t.primaryColor === theme.primaryColor && t.secondaryColor === theme.secondaryColor;
@@ -29,7 +36,7 @@ export default function ChangeTheme({ theme, setTheme}) {
     return (
         <div>
             Change theme:
-              {THEMES.map((t, i) => 
+              {themes.map((t, i) => 
                  <ThemeItem key= {'theme-' + i} theme={t} active={isActive(t)} onClick={() => setTheme(t)} />
                )}
         </div>

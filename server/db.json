@@ -1,0 +1,51 @@
+{
+    "posts": [
+        {
+            "id": "react-tests",
+            "title": "Testing React Components",
+            "content": "Jest is the reccommended test runner for testing React, However there exists others such as Mocha",
+            "author": "Isaac Obuya"
+        },
+        {
+            "id": "react-hooks",
+            "title": "Introduction to React Hooks",
+            "content": "React Hooks provides a consize way of creating react components that are easy to test and have no side effects",
+            "author": "Abraham Imvhoc"
+        },
+        {
+            "id": "web-tutorial",
+            "title": "Roadmap to learning Web Development",
+            "content": "The beggining of learning React starts with thorougly learning and mastering the syntax of Javascript, together with HTM and CSS",
+            "author": "Sam Kiprop"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "username": "Isaacobuya5",
+            "password": "Phestustoma5"
+        },
+        {
+            "id": 2,
+            "username": "Johndoe",
+            "password": "john12345"
+        }
+    ],
+    "themes": [
+        { 
+            "id": 1, 
+            "primaryColor": "deepskyblue",
+             "secondaryColor": "coral"
+             },
+        { 
+            "id": 2, 
+            "primaryColor": "orchid", 
+            "secondaryColor": "mediumseagreen"
+         },
+       { 
+           "id": 3, 
+           "primaryColor": "darkslategray",
+            "secondaryColor": "slategray"
+       }
+    ]
+}

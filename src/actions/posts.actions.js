@@ -8,3 +8,10 @@ export function createNewPost(title, content, author) {
         author
     }
 }
+
+export function fetchPosts(posts) {
+return {
+    type: actionTypes.FETCH_POSTS,
+    posts
+}
+}

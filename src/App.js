@@ -12,27 +12,11 @@ import PostList from "./posts/PostList";
 
 // import the rootReducer containing combined reducers
 import { rootReducer } from "./reducers/rootReducer";
+import { fetchPosts } from "./actions/posts.actions";
 import {StateContext,ThemeContext} from "./contexts";
 
 import './App.css';
 
-const defaultPosts = [
-    {
-        title: "Testing React Components",
-        content: "Jest is the reccommended test runner for testing React, However there exists others such as Mocha",
-        author: "Isaac Obuya"
-    },
-    {
-        title: "Introduction to React Hooks",
-        content: "React Hooks provides a consize way of creating react components that are easy to test and have no side effects",
-        author: "Abraham Imvhoc"
-    },
-    {
-        title: "Roadmap to learning Web Development",
-        content: "The beggining of learning React starts with thorougly learning and mastering the syntax of Javascript, together with HTM and CSS",
-        author: "Sam Kiprop"
-    }
-];
 export default function App() {
 
     const [theme, setTheme] = useState({
@@ -40,31 +24,22 @@ export default function App() {
         secondaryColor: 'blue'
     });
 
-    // const [user, setUser] = useState('');
-    // const [user, dispatchUser] = useReducer(userReducer, '');
-
-    // const [posts, setPosts] = useState(defaultPosts);
-    // replaced with postReducer
-    // const [posts, dispatchPosts] = useReducer(postsReducer, defaultPosts);
-// return <Logout user="Isaac Obuya"/>
-
    // each hook definition to be replaced with a single defined hook definition for both user and posts
    const [state, dispatch] = useReducer(rootReducer, {
     user: '',
-    posts: defaultPosts
+    posts: []
 });
 
 // extract values 
 const {user, posts} = state;
 // then we pass dispatch as prop to each of the component rather than dispatchUser, or dispatchPosts
 
+// fetch posts via hook and then dispatch fetchPost action to update the posts array in the state.
 useEffect(() => {
-    if (user) {
-        document.title = `${user} - React Blog`
-    } else {
-        document.title = "React Blog"
-    }
-},[user]);
+    fetch('/api/posts')
+    .then(response => response.json())
+    .then(posts => dispatch(fetchPosts(posts)));
+},[]);
 
 return (
 //using Context Provider to change the value of the Contexts

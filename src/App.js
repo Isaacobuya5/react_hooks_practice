@@ -1,4 +1,5 @@
 import React, {useReducer, useEffect, useState} from "react";
+import { useResource } from "react-request-hook";
 
 import Header from "./Header";
 import ChangeTheme from './posts/ChangeTheme';
@@ -31,15 +32,29 @@ export default function App() {
 });
 
 // extract values 
-const {user, posts} = state;
+ const { user } = state;
 // then we pass dispatch as prop to each of the component rather than dispatchUser, or dispatchPosts
 
-// fetch posts via hook and then dispatch fetchPost action to update the posts array in the state.
+// REPLACING WITH useRequest HOOK.
+const [posts, getPosts] = useResource(() => ({
+   url: '/posts',
+   method: 'get'
+}));
+
+useEffect(getPosts, []);
+
+// another useEffect that dispatches the action fetch_user
 useEffect(() => {
-    fetch('/api/posts')
-    .then(response => response.json())
-    .then(posts => dispatch(fetchPosts(posts)));
-},[]);
+    if (posts && posts.data) { 
+        dispatch(fetchPosts(posts.data));
+    }
+},[posts]);
+// fetch posts via hook and then dispatch fetchPost action to update the posts array in the state.
+// useEffect(() => {
+//     fetch('/api/posts')
+//     .then(response => response.json())
+//     .then(posts => dispatch(fetchPosts(posts)));
+// },[]);
 
 return (
 //using Context Provider to change the value of the Contexts

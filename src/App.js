@@ -14,6 +14,7 @@ import PostList from "./posts/PostList";
 // import the rootReducer containing combined reducers
 import { rootReducer } from "./reducers/rootReducer";
 import { fetchPosts } from "./actions/posts.actions";
+import { postsError } from "./actions/errors.actions";
 import {StateContext,ThemeContext} from "./contexts";
 
 import './App.css';
@@ -28,11 +29,12 @@ export default function App() {
    // each hook definition to be replaced with a single defined hook definition for both user and posts
    const [state, dispatch] = useReducer(rootReducer, {
     user: '',
-    posts: []
+    posts: [],
+    error:''
 });
 
 // extract values 
- const { user } = state;
+ const { user, error } = state;
 // then we pass dispatch as prop to each of the component rather than dispatchUser, or dispatchPosts
 
 // REPLACING WITH useRequest HOOK.
@@ -45,6 +47,9 @@ useEffect(getPosts, []);
 
 // another useEffect that dispatches the action fetch_user
 useEffect(() => {
+    if (posts && posts.error) {
+        dispatch()
+    }
     if (posts && posts.data) { 
         dispatch(fetchPosts(posts.data));
     }
@@ -71,7 +76,7 @@ return (
     {/* {user &&  <CreatePost user={user} posts={posts} dispatch={dispatch}/>} */}
     {user &&  <CreatePost />}
     {/* <PostList posts={posts} /> */}
-    <PostList />
+{error && <b>{error}</b> }<PostList />
     </section>
 </div>
 </ThemeContext.Provider>

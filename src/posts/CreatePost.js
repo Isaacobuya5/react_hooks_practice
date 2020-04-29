@@ -1,4 +1,5 @@
 import React,{ useState, useContext } from "react";
+import { useResource } from "react-request-hook";
 
 import { StateContext } from "../contexts";
 import {createNewPost} from "../actions/posts.actions";
@@ -6,10 +7,17 @@ import {createNewPost} from "../actions/posts.actions";
 
 export default function CreatePost() {
     const { state, dispatch } = useContext(StateContext);
-    const { user, posts } = state;
+    const { user } = state;
     
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+
+    // hook to create a new post
+    const [, createPost ] = useResource(({ title, content, author}) => ({
+        url: '/posts',
+        method: 'post',
+        data: { title, content, author }
+    }));
 
     function handleTitle(event) {
         event.preventDefault();
@@ -22,14 +30,9 @@ export default function CreatePost() {
     }
 
     // creating  a new post
-    function createPost() {
-        // const newPost = {
-        //     author: user,
-        //     title,
-        //     content
-        // }
-        // // adding new post to existing posts
-        // setPosts([ newPost, ...posts]);
+    function handleCreatePost() {
+        // sending post request to the server
+        createPost({ title, content, user});
         dispatch(createNewPost(title, content, user));
     }
 
@@ -41,7 +44,7 @@ export default function CreatePost() {
     <article className="new-post">
     <form onSubmit={e => {
         e.preventDefault();
-        createPost();
+        handleCreatePost();
         clearFields();
     }
     }>

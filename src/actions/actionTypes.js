@@ -3,5 +3,6 @@ export const actionTypes = {
     REGISTER: "REGISTER",
     LOGOUT: "LOGOUT",
     CREATE_POST: "CREATE_POST",
-    FETCH_POSTS: "FETCH_POSTS"
+    FETCH_POSTS: "FETCH_POSTS",
+    POSTS_ERROR: "POSTS_ERROR"
 };

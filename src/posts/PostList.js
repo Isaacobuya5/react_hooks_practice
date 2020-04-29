@@ -12,6 +12,7 @@ export default function PostList() {
     const {posts} = state;
 
     return (
+        
         <article className="post-list">
          {posts.map((post, index) => (
              <Post key={index} {...post} />

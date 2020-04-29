@@ -47,6 +47,34 @@
       "id": 2,
       "username": "Johndoe",
       "password": "john12345"
+    },
+    {
+      "username": {
+        "username": "Zakolo5",
+        "password": "qwert"
+      },
+      "id": 3
+    },
+    {
+      "username": {
+        "username": "John",
+        "password": "qwert"
+      },
+      "id": 4
+    },
+    {
+      "username": {
+        "username": "isaacobuya5",
+        "password": "zxcvb"
+      },
+      "id": 5
+    },
+    {
+      "username": {
+        "username": "Samuel",
+        "password": "Phesto"
+      },
+      "id": 6
     }
   ],
   "themes": [

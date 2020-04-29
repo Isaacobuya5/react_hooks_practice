@@ -10,11 +10,10 @@ export function loginUserAction(username, password) {
 }
 
 // Register ACTION
-export function registerUserAction(username,password) {
+export function registerUserAction(user) {
     return {
         type: actionTypes.REGISTER,
-        username,
-        password
+        user
     }
 }
 

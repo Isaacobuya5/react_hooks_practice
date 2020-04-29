@@ -16,13 +16,17 @@ export default function Register() {
     // hook to send a new post request to create a user
     const [ user, register ] = useResource((username, password) => ({
         url: '/users',
-        method: '/posts',
-        data: { username, password }
+        method: 'post',
+        data: { 
+            username: username,
+            password: password 
+            }
     }));
 
     useEffect(() => {
         if (user && user.data) {
-            dispatch(registerUserAction(user.data));
+            console.log(user.data.username.password);
+            dispatch(registerUserAction(user.data.username));
         }
     }, [user]);
 
@@ -41,13 +45,13 @@ export default function Register() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // check if password / setPassword are same before submission
-        if (password === cpassword) {
-            // send the request for creating a new user
-            register({username, password});
+        if (password !== cpassword) {
+                   // password !== cpassword
+                alert("Passwords do not match");
+                return;
         }
-        // password !== cpassword
-        alert("Passwords do not match");
-        return;
+        // send the request for creating a new user
+        register({username, password});
     }
 
     return (

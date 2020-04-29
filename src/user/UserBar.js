@@ -3,6 +3,7 @@ import { StateContext } from "../contexts";
 
 // import Register from "./user/Register";
 import Login from "./Login";
+import Register from "./Register";
 import Logout from "./Logout";
 
 export default function UserBar() {
@@ -19,7 +20,10 @@ export default function UserBar() {
     } else {
         content = (
             // <Login dispatch={dispatch}/>
+            <React.Fragment>
+            <Register />
             <Login/>
+            </React.Fragment>
         )
     }
     return (

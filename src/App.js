@@ -1,20 +1,15 @@
 import React, {useReducer, useEffect, useState} from "react";
-import { useResource } from "react-request-hook";
 
-import Header from "./Header";
-import ChangeTheme from './posts/ChangeTheme';
-import UserBar from "./user/UserBar";
-import Post from "./posts/Post";
-import CreatePost from "./posts/CreatePost";
-import PostList from "./posts/PostList";
+
+import HeaderBar from "./HeaderBar";
+import HomePage from "./HomePage";
+import PostPage from "./posts/PostPage";
 
 // import {userReducer} from "./reducers/user.reducer";
 // import { postsReducer } from "./reducers/posts.reducer";
 
 // import the rootReducer containing combined reducers
 import { rootReducer } from "./reducers/rootReducer";
-import { fetchPosts } from "./actions/posts.actions";
-import { postsError } from "./actions/errors.actions";
 import {StateContext,ThemeContext} from "./contexts";
 
 import './App.css';
@@ -38,22 +33,7 @@ export default function App() {
 // then we pass dispatch as prop to each of the component rather than dispatchUser, or dispatchPosts
 
 // REPLACING WITH useRequest HOOK.
-const [posts, getPosts] = useResource(() => ({
-   url: '/posts',
-   method: 'get'
-}));
 
-useEffect(getPosts, []);
-
-// another useEffect that dispatches the action fetch_user
-useEffect(() => {
-    if (posts && posts.error) {
-        dispatch()
-    }
-    if (posts && posts.data) { 
-        dispatch(fetchPosts(posts.data));
-    }
-},[posts]);
 // fetch posts via hook and then dispatch fetchPost action to update the posts array in the state.
 // useEffect(() => {
 //     fetch('/api/posts')
@@ -65,20 +45,9 @@ return (
 //using Context Provider to change the value of the Contexts
 <StateContext.Provider value={{state, dispatch}}>
 <ThemeContext.Provider value={theme}>
-<div>
-    <header>
-        {user ? <Header text="React Hooks Blog" /> : ""}
-        <ChangeTheme theme={theme} setTheme={setTheme} />
-        {/* <UserBar user={user} dispatch={dispatch}/> */}
-        <UserBar />
-    </header>
-    <section id="rest">
-    {/* {user &&  <CreatePost user={user} posts={posts} dispatch={dispatch}/>} */}
-    {user &&  <CreatePost />}
-    {/* <PostList posts={posts} /> */}
-{error && <b>{error}</b> }<PostList />
-    </section>
-</div>
+<HeaderBar setTheme={setTheme}/>
+{/* <HomePage /> */}
+<PostPage id={"react-hooks"} />
 </ThemeContext.Provider>
 </StateContext.Provider>
 )

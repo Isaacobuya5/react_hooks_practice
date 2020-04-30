@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import {ThemeContext} from "../contexts";
 
 export default function Post({ title, content, author }) {
+    console.log("rerendering post");
     const { secondaryColor } = useContext(ThemeContext);
 
 
@@ -14,3 +15,4 @@ export default function Post({ title, content, author }) {
         </article>
     );
 }
+

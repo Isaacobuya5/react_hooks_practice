@@ -1,4 +1,4 @@
-import React,{ useState, useContext } from "react";
+import React,{ useState, useContext, useEffect } from "react";
 import { useResource } from "react-request-hook";
 
 import { StateContext } from "../contexts";
@@ -13,11 +13,18 @@ export default function CreatePost() {
     const [content, setContent] = useState('');
 
     // hook to create a new post
-    const [, createPost ] = useResource(({ title, content, author}) => ({
+    const [post , createPost ] = useResource(({ title, content, author}) => ({
         url: '/posts',
         method: 'post',
         data: { title, content, author }
     }));
+
+    useEffect(() => {
+        if (post && post.data) {
+            console.log(post.data);
+            dispatch(createNewPost(post.data));
+        }
+    },[post]);
 
     function handleTitle(event) {
         event.preventDefault();
@@ -33,7 +40,7 @@ export default function CreatePost() {
     function handleCreatePost() {
         // sending post request to the server
         createPost({ title, content, user});
-        dispatch(createNewPost(title, content, user));
+       
     }
 
     function clearFields() {

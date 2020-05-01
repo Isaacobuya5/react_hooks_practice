@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useResource } from "react-request-hook";
+import { Link } from "react-navi";
 
 import Post from "./Post";
 
@@ -16,6 +17,8 @@ export default function PostPage ({ id }) {
     return (
        <div>
            {(post && post.data) ? <Post {...post.data} /> : "Loading..."}
+           <br />
+        <Link  href="/"> Go back to main page </Link>
        </div>
     );
 }

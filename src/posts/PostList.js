@@ -15,7 +15,7 @@ export default function PostList() {
         
         <article className="post-list">
          {posts.map((post, index) => (
-             <Post key={index} {...post} />
+             <Post key={index} {...post} short={true}/>
          ))}
         </article>
     )

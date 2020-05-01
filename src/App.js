@@ -1,5 +1,7 @@
 import React, {useReducer, useEffect, useState} from "react";
 
+import { Router, View } from "react-navi";
+import { mount, route } from "navi";
 
 import HeaderBar from "./HeaderBar";
 import HomePage from "./HomePage";
@@ -13,6 +15,18 @@ import { rootReducer } from "./reducers/rootReducer";
 import {StateContext,ThemeContext} from "./contexts";
 
 import './App.css';
+
+// defining the routes config
+const routes = mount({
+    '/' : route({
+        view: <HomePage />
+    }),
+    '/view/:id': route(req => {
+        return {
+            view: <PostPage id={req.params.id} />
+        }
+    }),
+})
 
 export default function App() {
 
@@ -45,9 +59,13 @@ return (
 //using Context Provider to change the value of the Contexts
 <StateContext.Provider value={{state, dispatch}}>
 <ThemeContext.Provider value={theme}>
+
+<Router routes={routes}>
 <HeaderBar setTheme={setTheme}/>
 {/* <HomePage /> */}
-<PostPage id={"react-hooks"} />
+<View />
+</Router>
+
 </ThemeContext.Provider>
 </StateContext.Provider>
 )

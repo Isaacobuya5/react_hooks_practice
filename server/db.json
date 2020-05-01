@@ -19,27 +19,14 @@
       "author": "Sam Kiprop"
     },
     {
-      "title": "Welcome to Asynchronous Javascript",
-      "content": "here it is...",
-      "id": "nRd6_Rs"
+      "title": "Linux System Administration",
+      "content": "Linux is an open source operating system that is widely used to create applications.",
+      "id": "J55xov4"
     },
     {
-      "id": "ZaBEWaw"
-    },
-    {
-      "title": "Welcome to Asynchronous Javascript",
-      "content": "Here it is...",
-      "id": "ZASCYZy"
-    },
-    {
-      "title": "My favorite program",
-      "content": "Hello world",
-      "id": "jqlfuR1"
-    },
-    {
-      "title": "",
-      "content": "",
-      "id": "lMT8Wnx"
+      "title": "Securing React and Firebase Apps with Auth0",
+      "content": "You can secure your basic react applications with auth0 which is a mechanism that provides",
+      "id": "EEGuhs6"
     }
   ],
   "users": [

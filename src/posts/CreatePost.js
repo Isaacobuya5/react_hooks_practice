@@ -1,5 +1,6 @@
 import React,{ useState, useContext, useEffect } from "react";
 import { useResource } from "react-request-hook";
+import { useNavigation } from "react-navi";
 
 import { StateContext } from "../contexts";
 import {createNewPost} from "../actions/posts.actions";
@@ -16,13 +17,18 @@ export default function CreatePost() {
     const [post , createPost ] = useResource(({ title, content, author}) => ({
         url: '/posts',
         method: 'post',
-        data: { title, content, author }
+        data: { title, content, author: user }
     }));
 
+    // navigation hook
+    const navigation = useNavigation();
+
+    // use effect hook
     useEffect(() => {
         if (post && post.data) {
-            console.log(post.data);
             dispatch(createNewPost(post.data));
+            // automatically move to post page after succesful creation of a new post
+            navigation.navigate(`/view/${post.data.id}`);
         }
     },[post]);
 

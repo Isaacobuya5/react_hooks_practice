@@ -2,6 +2,8 @@ import React, {useContext} from "react";
 import { Link } from "react-navi";
 import {ThemeContext} from "../contexts";
 
+import Footer from "../Footer";
+
 export default function Post({ id, title, content, author, short = false }) {
     const { secondaryColor } = useContext(ThemeContext);
 
@@ -14,6 +16,7 @@ export default function Post({ id, title, content, author, short = false }) {
     }
 
     return (
+        <React.Fragment>
         <article className="posts">
         <h3 className="post-title" style={{ color: secondaryColor}}>{title}</h3>
         <div className="title-underline"></div>
@@ -25,6 +28,8 @@ export default function Post({ id, title, content, author, short = false }) {
         </div>}
     <div className="author">Written by: <span className="author-name">{author}</span></div>
         </article>
+        <Footer />
+        </React.Fragment>
     );
 }
 

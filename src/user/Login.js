@@ -1,5 +1,6 @@
 import React,{useState, useContext, useEffect} from "react";
-import { useResource } from "react-request-hook";
+
+import { useAPILogin } from "../hooks/api";
 import {loginUserAction} from "../actions/user.actions";
 import { useDispatch } from "../hooks/useDispatch";
 
@@ -18,10 +19,7 @@ export default function Login() {
     
     const { username, password } = currentUser;
 
-    const [ user, login ] = useResource((username, password) => ({
-        url: `/login/${encodeURI(username)}/${encodeURI(password)}`,
-        method: 'get'
-    }));
+    const [ user, login ] = useAPILogin();
 
     useEffect(() => {
         if (user && user.data) {

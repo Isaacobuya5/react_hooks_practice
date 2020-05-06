@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useResource } from "react-request-hook";
+
+import { useAPIRegister } from "../hooks/api";
 import { useDispatch } from "../hooks/useDispatch";
 import { registerUserAction } from "../actions/user.actions";
 
@@ -13,14 +14,7 @@ export default function Register() {
     // consume the dispatch from global state
     const dispatch  = useDispatch();
     // hook to send a new post request to create a user
-    const [ user, register ] = useResource((username, password) => ({
-        url: '/users',
-        method: 'post',
-        data: { 
-            username: username,
-            password: password 
-            }
-    }));
+    const [ user, register ] = useAPIRegister();
 
     useEffect(() => {
         if (user && user.data) {

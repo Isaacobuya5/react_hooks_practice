@@ -1,10 +1,10 @@
 import React,{ useState,  useEffect } from "react";
-import { useResource } from "react-request-hook";
 import { useNavigation } from "react-navi";
 
 // import { StateContext } from "../contexts";
 import { useUserState } from "../hooks/useUserState";
 import { useDispatch } from "../hooks/useDispatch";
+import { useAPICreatePost } from "../hooks/api";
 import {createNewPost} from "../actions/posts.actions";
 
 
@@ -16,11 +16,7 @@ export default function CreatePost() {
     const [content, setContent] = useState('');
 
     // hook to create a new post
-    const [post , createPost ] = useResource(({ title, content, author}) => ({
-        url: '/posts',
-        method: 'post',
-        data: { title, content, author: user }
-    }));
+    const [post , createPost ] = useAPICreatePost(user);
 
     // navigation hook
     const navigation = useNavigation();

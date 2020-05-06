@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useResource } from "react-request-hook";
+import { useAPIThemes } from "../hooks/api";
 
 
 function ThemeItem({ theme, active, onClick}) {
@@ -27,10 +27,7 @@ export default function ChangeTheme({ theme, setTheme}) {
      * we then need to define a useEffect hook to trigger the getThemes function.
      * We only want to trigger it once when the component mounts
      */
-         const [themes, getThemes ] = useResource(() => ({
-             url: '/themes',
-             method: 'get'
-         }));
+         const [themes, getThemes ] = useAPIThemes();
 
          // destructuring "data" and "isLoading" boolean from themes object.
          const { data, isLoading } = themes;

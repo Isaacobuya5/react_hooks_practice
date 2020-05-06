@@ -1,26 +1,12 @@
-import React,{useState, useContext, useEffect} from "react";
+import React,{useState, useEffect} from "react";
 
 import { useAPILogin } from "../hooks/api";
 import {loginUserAction} from "../actions/user.actions";
 import { useDispatch } from "../hooks/useDispatch";
 
-export default function Login() {
 
-    const dispatch = useDispatch();
-
-    const [currentUser, setCurrentUser] = useState({
-        username: "",
-        password: ""
-    });
-
-    // status for login failure
-    const [loginFailed, setLoginFailed] = useState(false);
-
-    
-    const { username, password } = currentUser;
-
-    const [ user, login ] = useAPILogin();
-
+// local hook
+function useLoginEffect(user, dispatch, setLoginFailed) {
     useEffect(() => {
         if (user && user.data) {
             // empty array means login failed
@@ -40,6 +26,26 @@ export default function Login() {
             return;
         }
     }, [user]);
+}
+
+export default function Login() {
+
+    const dispatch = useDispatch();
+
+    const [currentUser, setCurrentUser] = useState({
+        username: "",
+        password: ""
+    });
+
+    // status for login failure
+    const [loginFailed, setLoginFailed] = useState(false);
+
+    
+    const { username, password } = currentUser;
+
+    const [ user, login ] = useAPILogin();
+
+    useLoginEffect(user, dispatch, setLoginFailed);
 
     function handleChange(event) {
         event.preventDefault();

@@ -1,14 +1,16 @@
-import React,{ useState, useContext, useEffect } from "react";
+import React,{ useState,  useEffect } from "react";
 import { useResource } from "react-request-hook";
 import { useNavigation } from "react-navi";
 
-import { StateContext } from "../contexts";
+// import { StateContext } from "../contexts";
+import { useUserState } from "../hooks/useUserState";
+import { useDispatch } from "../hooks/useDispatch";
 import {createNewPost} from "../actions/posts.actions";
 
 
 export default function CreatePost() {
-    const { state, dispatch } = useContext(StateContext);
-    const { user } = state;
+    const user = useUserState();
+    const dispatch = useDispatch();
     
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');

@@ -5,7 +5,6 @@ import { Link } from "react-navi";
 import Post from "./Post";
 
 export default function PostPage ({ id }) {
-    console.log(id)
 
     const [post, getPost] = useResource(() => ({
         url: `/posts/${id}`,

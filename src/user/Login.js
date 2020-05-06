@@ -1,11 +1,11 @@
 import React,{useState, useContext, useEffect} from "react";
 import { useResource } from "react-request-hook";
 import {loginUserAction} from "../actions/user.actions";
-import { StateContext } from "../contexts";
+import { useDispatch } from "../hooks/useDispatch";
 
 export default function Login() {
 
-    const { dispatch } = useContext(StateContext);
+    const dispatch = useDispatch();
 
     const [currentUser, setCurrentUser] = useState({
         username: "",

@@ -43,6 +43,12 @@
       "content": "Hello honey, you are my dream world and i love u so much..",
       "author": "Isaacobuya5",
       "id": "HoYdYLF"
+    },
+    {
+      "title": "Custom Hooks",
+      "content": "Custom Hooks provides a more consize way of modularizing hooks.",
+      "author": "Isaacobuya5",
+      "id": "mP-zwTS"
     }
   ],
   "users": [
@@ -83,6 +89,13 @@
         "password": "Phesto"
       },
       "id": 6
+    },
+    {
+      "username": {
+        "username": "Cynthia",
+        "password": "asdfg"
+      },
+      "id": 7
     }
   ],
   "themes": [

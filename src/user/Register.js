@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useResource } from "react-request-hook";
-
-import { StateContext } from "../contexts";
+import { useDispatch } from "../hooks/useDispatch";
 import { registerUserAction } from "../actions/user.actions";
 
 export default function Register() {
@@ -12,7 +11,7 @@ export default function Register() {
         cpassword: ""
     });
     // consume the dispatch from global state
-    const { dispatch } = useContext(StateContext);
+    const dispatch  = useDispatch();
     // hook to send a new post request to create a user
     const [ user, register ] = useResource((username, password) => ({
         url: '/users',

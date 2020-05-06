@@ -1,14 +1,15 @@
-import React,{useContext} from "react";
+import React from "react";
 
 import { logoutUser } from "../actions/user.actions";
 
-import { StateContext } from "../contexts";
+import { useUserState } from "../hooks/useUserState";
+import { useDispatch } from "../hooks/useDispatch";
 
 export default function Logout() {
 
-    const { state, dispatch} = useContext(StateContext);
+    const user = useUserState();
+    const dispatch = useDispatch();
 
-    const { user } = state;
     return (
         <div className="logout">
         <span className="loggedin-text">Welcome user: {user}</span>

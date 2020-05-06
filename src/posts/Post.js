@@ -1,11 +1,11 @@
-import React, {useContext} from "react";
+import React from "react";
 import { Link } from "react-navi";
-import {ThemeContext} from "../contexts";
-
+// import {ThemeContext} from "../contexts";
+import { useTheme } from "../hooks/useTheme";
 import Footer from "../Footer";
 
 export default function Post({ id, title, content, author, short = false }) {
-    const { secondaryColor } = useContext(ThemeContext);
+    const { secondaryColor } = useTheme();
 
     let processedContent = content;
 

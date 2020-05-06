@@ -30,6 +30,24 @@ const routes = mount({
 
 export default function App() {
 
+    // practice -> setInterval
+    // const [count, setCount] = useState(0);
+
+    // useEffect(() => {
+    //     let interval = setInterval(() => setCount(count + 1), 1000);
+    //     return () => clearInterval(interval);
+    // });
+
+    // render this component after 10 seconds
+    const [ready, setReady] = useState(false);
+
+    useEffect(() => {
+        let timeout = setTimeout(() => setReady(true), 10000);
+        // clear subscription 
+        return () => clearTimeout();
+    });
+
+   
     const [theme, setTheme] = useState({
         primaryColor: 'green',
         secondaryColor: 'blue'
@@ -61,6 +79,7 @@ return (
 <ThemeContext.Provider value={theme}>
 
 <Router routes={routes}>
+<div>{ready ? 'ready' : 'waiting'}</div>
 <HeaderBar setTheme={setTheme}/>
 {/* <HomePage /> */}
 <View />

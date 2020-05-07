@@ -1,5 +1,6 @@
 import React,{ useState,  useEffect } from "react";
 import { useNavigation } from "react-navi";
+import useUndo from "use-undo";
 
 // import { StateContext } from "../contexts";
 import { useUserState } from "../hooks/useUserState";
@@ -13,7 +14,18 @@ export default function CreatePost() {
     const dispatch = useDispatch();
     
     const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+    // const [content, setContent] = useState('');
+    // enable for undo and redo functionality in the textarea
+     const [undoContent, {
+         set: setContent,
+         undo,
+         redo,
+         canUndo,
+         canRedo
+     }] = useUndo('');
+
+     const content = undoContent.present;
+
 
     // hook to create a new post
     const [post , createPost ] = useAPICreatePost(user);
@@ -62,6 +74,8 @@ export default function CreatePost() {
       <div className="author-create">Author: {user}</div>
       <input type="text" name="title" id="title" placeholder="post title" value={title} onChange={handleTitle}/>
          <textarea placeholder="Enter you post Content" value={content} onChange={handleContent}/>
+         <button type="button" onClick={undo} disabled={!canUndo}>Undo</button>
+         <button type="button" onClick={redo} disabled={!canRedo}>Redo</button>
         <button type="submit">Create</button>
     </form>
     </article>

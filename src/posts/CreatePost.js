@@ -1,6 +1,7 @@
 import React,{ useState,  useEffect } from "react";
 import { useNavigation } from "react-navi";
 import useUndo from "use-undo";
+import { useDebouncedCallback } from "use-debounce";
 
 // import { StateContext } from "../contexts";
 import { useUserState } from "../hooks/useUserState";
@@ -15,6 +16,8 @@ export default function CreatePost() {
     
     const [title, setTitle] = useState('');
     // const [content, setContent] = useState('');
+
+    const [content, setInput ] = useState('');
     // enable for undo and redo functionality in the textarea
      const [undoContent, {
          set: setContent,
@@ -24,7 +27,17 @@ export default function CreatePost() {
          canRedo
      }] = useUndo('');
 
-     const content = undoContent.present;
+    //  const content = undoContent.present;
+
+    const [setDebounce, cancelDebounce] = useDebouncedCallback((value) => {
+        setContent(value);
+    }, 200);
+
+    useEffect(() => {
+        cancelDebounce();
+
+        setInput(undoContent.present)
+    },[undoContent]);
 
 
     // hook to create a new post
@@ -49,7 +62,9 @@ export default function CreatePost() {
 
     function handleContent(event) {
         event.preventDefault();
-        setContent(event.target.value);
+        // setContent(event.target.value);
+        setInput(event.target.value);
+        setDebounce(event.target.value);
     }
 
     // creating  a new post
